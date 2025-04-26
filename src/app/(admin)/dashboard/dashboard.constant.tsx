@@ -1,16 +1,21 @@
-import { MapPin, Binoculars } from "lucide-react"
+import { MapPin, Binoculars, Command } from "lucide-react"
 
 const SIDEBAR_ADMIN = [
+    // {
+    //     title: "Dashboard",
+    //     url: "/dashboard",
+    //     icon: Command,
+    // },
     {
         title: "Tour",
-        url: "/tour",
+        url: "/dashboard/tour",
         icon: Binoculars,
-        isActive: true,
     },
     {
         title: "Destination",
-        url: "/destination",
+        url: "/dashboard/destination",
         icon: MapPin,
-        isActive: false,
     },
 ]
+
+export { SIDEBAR_ADMIN }
