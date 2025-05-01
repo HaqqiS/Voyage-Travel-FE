@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, ComponentProps } from "react"
+import { ComponentProps } from "react"
 import { Command } from "lucide-react"
 
 import { NavUser } from "@/components/commons/NavUser"
@@ -16,7 +16,7 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar"
-import { SIDEBAR_ADMIN } from "@/app/(admin)/dashboard/dashboard.constant"
+import { SIDEBAR_ADMIN } from "@/constants/dashboard.constant"
 import Link from "next/link"
 import { useRouter, usePathname } from "next/navigation"
 
@@ -113,9 +113,9 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
                     </SidebarMenu>
                 </SidebarHeader>
                 <SidebarContent>
-                    <SidebarGroup className="px-0">
+                    <SidebarGroup className="px-2">
                         <SidebarGroupContent>
-                            <SidebarMenu>
+                            <SidebarMenu className="">
                                 {SIDEBAR_ADMIN.map((item) => (
                                     <SidebarMenuItem key={item.title}>
                                         <SidebarMenuButton
@@ -129,7 +129,7 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
                                                 setOpen(true)
                                             }}
                                             isActive={pathname === item.url}
-                                            className="px-2.5 md:px-2"
+                                            className="px-2.5 md:px-2 "
                                         >
                                             <item.icon />
                                             <span>{item.title}</span>

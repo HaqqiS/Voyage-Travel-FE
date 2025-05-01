@@ -1,3 +1,4 @@
+"use client"
 import { ModeToggle } from "@/components/commons/ModeToggle"
 import {
     Breadcrumb,
@@ -9,10 +10,13 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Input } from "@/components/ui/input"
 import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar"
+import { capitalizeFirstLetter } from "@/utils/string"
 import { Separator } from "@radix-ui/react-dropdown-menu"
+import { usePathname } from "next/navigation"
 
 export default function DashboardNavbar({ ...props }: React.ComponentProps<typeof SidebarInset>) {
     const { children } = props
+    const pathname = usePathname()
     return (
         <SidebarInset>
             <header className="sticky top-0 flex shrink-0 items-center gap-2 border-b bg-background p-4 justify-between">
@@ -22,17 +26,26 @@ export default function DashboardNavbar({ ...props }: React.ComponentProps<typeo
                     <Breadcrumb>
                         <BreadcrumbList>
                             <BreadcrumbItem className="hidden md:block">
-                                <BreadcrumbLink href="#">All Inboxes</BreadcrumbLink>
+                                <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
                             </BreadcrumbItem>
                             <BreadcrumbSeparator className="hidden md:block" />
                             <BreadcrumbItem>
-                                <BreadcrumbPage>Inbox</BreadcrumbPage>
+                                <BreadcrumbPage>
+                                    {pathname.split("/").pop() !== "dashboard"
+                                        ? capitalizeFirstLetter(
+                                              pathname
+                                                  .split("/")
+                                                  .filter((segment) => segment)
+                                                  .pop() || "",
+                                          )
+                                        : null}
+                                </BreadcrumbPage>
                             </BreadcrumbItem>
                         </BreadcrumbList>
                     </Breadcrumb>
                 </div>
                 <div className="flex h-full justify-end items-center space-x-1.5">
-                    <Input type="text" placeholder="Search" className="w-xs" />
+                    <Input type="text" placeholder="Search" className="md:w-xs w-fit" />
                     <Separator className=" h-4" />
                     <ModeToggle></ModeToggle>
                 </div>

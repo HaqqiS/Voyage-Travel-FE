@@ -1,16 +1,6 @@
 import { AppSidebar } from "@/components/commons/AppSidebar"
-import { ModeToggle } from "@/components/commons/ModeToggle"
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Input } from "@/components/ui/input"
-import { Separator } from "@/components/ui/separator"
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+
+import { SidebarProvider } from "@/components/ui/sidebar"
 import { ReactNode } from "react"
 import DashboardNavbar from "./@navbar/page"
 

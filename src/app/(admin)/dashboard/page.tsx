@@ -1,4 +1,4 @@
-export default function Page() {
+export default function DashboardPage() {
     return (
         <>
             <div className="aspect-video h-12 w-full rounded-lg bg-muted/50 flex items-center justify-center">
