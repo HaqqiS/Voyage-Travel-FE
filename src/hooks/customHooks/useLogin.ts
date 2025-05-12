@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query"
 import * as yup from "yup"
 import { ILogin } from "@/types/auth"
 import { signIn } from "next-auth/react"
+import { toast } from "sonner"
 
 const loginSchema = yup.object({
     identifier: yup.string().required("Please enter your email or username"),
@@ -12,19 +13,18 @@ const loginSchema = yup.object({
 })
 
 const useLogin = () => {
-    const pathname = usePathname()
     const searchParams = useSearchParams()
     const router = useRouter()
 
     // Build callback URL properly
-    const callbackUrl = searchParams.size > 0 ? `${pathname}?${searchParams.toString()}` : pathname || "/"
+    const callbackUrl = searchParams.get("callbackUrl") || "/dashboard" // Default ke dashboard jika tidak ada
 
     const {
         control,
         handleSubmit,
         formState: { errors },
         reset,
-        setError,
+        // setError,
     } = useForm({
         resolver: yupResolver(loginSchema),
         defaultValues: {
@@ -55,16 +55,34 @@ const useLogin = () => {
     const { mutate: mutateLogin, isPending: isPendingLogin } = useMutation({
         mutationFn: loginService,
         onError: (error: Error) => {
-            // Set a specific error message from the error object
-            setError("root", {
-                type: "server",
-                message: error.message || "Login failed. Please try again.",
+            toast(error.message || "Your email/username or password is incorrect", {
+                position: "top-right",
+                style: {
+                    background: "var(--color-destructive)",
+                    color: "white",
+                },
+                action: {
+                    label: "Close",
+                    onClick: () => toast.dismiss(),
+                },
             })
         },
-        onSuccess: () => {
-            // Redirect first, then reset form to avoid UI flash
-            router.push(callbackUrl)
+        onSuccess: (result) => {
+            // Gunakan result.url jika tersedia, atau gunakan callbackUrl yang sudah diekstrak
+            const redirectUrl = result?.url || callbackUrl
             reset()
+            router.push(redirectUrl)
+            toast("Login success", {
+                position: "top-right",
+                style: {
+                    background: "var(--color-success)",
+                    color: "white",
+                },
+                action: {
+                    label: "Close",
+                    onClick: () => toast.dismiss(),
+                },
+            })
         },
     })
 

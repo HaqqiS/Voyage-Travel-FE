@@ -1,4 +1,4 @@
-import { MapPin, Binoculars } from "lucide-react"
+import { MapPin, Binoculars, Users } from "lucide-react"
 
 const SIDEBAR_ADMIN = [
     {
@@ -10,6 +10,11 @@ const SIDEBAR_ADMIN = [
         title: "Destination",
         url: "/dashboard/destination",
         icon: MapPin,
+    },
+    {
+        title: "Participant",
+        url: "/dashboard/participant",
+        icon: Users,
     },
 ]
 

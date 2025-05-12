@@ -140,6 +140,9 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
                         </SidebarGroupContent>
                     </SidebarGroup>
                 </SidebarContent>
+                <SidebarFooter>
+                    <NavUser user={data.user} />
+                </SidebarFooter>
             </Sidebar>
         </Sidebar>
     )

@@ -28,7 +28,7 @@ export default function RegisterPage() {
                 {errors.root ? (
                         <p className="font-semibold text-rose-400 ">{errors?.root?.message}</p>
                     ) : (
-                        <span className="relative z-10 bg-background px-2 text-muted-foreground">
+                        <span className="relative z-10  px-2 text-muted-foreground">
                             Or continue with
                         </span>
                     )}
@@ -50,7 +50,7 @@ export default function RegisterPage() {
                                                 placeholder="John Doe"
                                                 required
                                                 autoComplete="off"
-                                                className={`${fieldState.error ? 'border-rose-500 focus-visible:ring-rose-500' : ''}`}
+                                                aria-invalid={fieldState.error ? true : false}
                                             />
                                             {fieldState.error && (
                                                 <p className="text-sm font-semibold text-rose-400">
@@ -75,7 +75,7 @@ export default function RegisterPage() {
                                                 placeholder="johndoe"
                                                 required
                                                 autoComplete="off"
-                                                className={`${fieldState.error ? 'border-rose-500 focus-visible:ring-rose-500' : ''}`}
+                                                aria-invalid={fieldState.error ? true : false}
                                             />
                                             {fieldState.error && (
                                                 <p className="text-sm font-semibold text-rose-400">
@@ -100,7 +100,7 @@ export default function RegisterPage() {
                                                 placeholder="john@mail.com"
                                                 required
                                                 autoComplete="off"
-                                                className={`${fieldState.error ? 'border-rose-500 focus-visible:ring-rose-500' : ''}`}
+                                                aria-invalid={fieldState.error ? true : false}
                                             />
                                             {fieldState.error && (
                                                 <p className="text-sm font-semibold text-rose-400">
@@ -125,7 +125,7 @@ export default function RegisterPage() {
                                                 id="password"
                                                 required
                                                 autoComplete="off"
-                                                className={`${fieldState.error ? 'border-rose-500 focus-visible:ring-rose-500' : ''}`}
+                                                aria-invalid={fieldState.error ? true : false}
                                             />
                                             {fieldState.error && (
                                                 <p className="text-sm font-semibold text-rose-400">
@@ -150,7 +150,7 @@ export default function RegisterPage() {
                                                 id="confirmPassword"
                                                 required
                                                 autoComplete="off"
-                                                className={`${fieldState.error ? 'border-rose-500 focus-visible:ring-rose-500' : ''}`}
+                                                aria-invalid={fieldState.error ? true : false}
                                             />
                                             {fieldState.error && (
                                                 <p className="text-sm font-semibold text-rose-400">

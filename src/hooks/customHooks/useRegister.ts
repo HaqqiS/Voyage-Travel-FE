@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query"
 import * as yup from "yup"
 import { IRegister } from "@/types/auth"
 import authServices from "@/services/auth.service"
+import { toast } from "sonner"
 
 const registerSchema = yup.object({
     fullname: yup.string().required("Please input your fullname"),
@@ -61,21 +62,35 @@ const useRegister = () => {
         useMutation({
             mutationFn: registerService,
             onError: (error: Error) => {
-                // setToaster({
-                //     type: "error",
-                //     message: "username or email already exist",
-                // });r
-                setError("root", {
-                    type: "server",
-                    message: error.message || "Login failed. Please try again.",
+                toast(error.message || "Register failed. Please try again.", {
+                    position: "top-right",
+                    style: {
+                        background: "var(--destructive)",
+                        color: "var(--destructive-foreground)",
+                    },
+                    action: {
+                        label: "Close",
+                        onClick: () => toast.dismiss(),
+                    },
                 })
+                // setError("root", {
+                //     type: "server",
+                //     message: error.message || "Login failed. Please try again.",
+                // })
             },
             onSuccess: () => {
                 reset();
-                // setToaster({
-                //     type: "success",
-                //     message: "Register success",
-                // });
+                toast("Register success", {
+                    position: "top-right",
+                    style: {
+                        background: "var(--success)",
+                        color: "var(--success-foreground)",
+                    },
+                    action: {
+                        label: "Close",
+                        onClick: () => toast.dismiss(),
+                    },
+                })
                 router.push("/auth/login");
             },
         });

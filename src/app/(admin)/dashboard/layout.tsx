@@ -3,6 +3,7 @@ import { AppSidebar } from "@/components/commons/AppSidebar"
 import { SidebarProvider } from "@/components/ui/sidebar"
 import { ReactNode } from "react"
 import DashboardNavbar from "./@navbar/page"
+import { Metadata } from "next"
 
 interface navItems {
     title: string
@@ -12,12 +13,17 @@ interface navItems {
 }
 
 interface PropTypes {
-    navItems: navItems[]
     children: ReactNode
+    modal: ReactNode
+}
+
+export const metadata: Metadata= {
+    title: "Dashboard | Voyage Travel",
+    description: "A travel booking platform",
 }
 
 export default function DashboardLayout(props: PropTypes) {
-    const { navItems, children } = props
+    const { children, modal } = props
 
     return (
         <SidebarProvider
@@ -29,7 +35,11 @@ export default function DashboardLayout(props: PropTypes) {
         >
             <AppSidebar />
 
-            <DashboardNavbar>{children}</DashboardNavbar>
+
+            <DashboardNavbar>
+                {children}
+                {modal}
+            </DashboardNavbar>
         </SidebarProvider>
     )
 }

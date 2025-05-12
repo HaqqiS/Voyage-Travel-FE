@@ -8,9 +8,8 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { Input } from "@/components/ui/input"
 import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar"
-import { capitalizeFirstLetter } from "@/utils/string"
+import { capitalizeFirstLetter } from "@/utils/format"
 import { Separator } from "@radix-ui/react-dropdown-menu"
 import { usePathname } from "next/navigation"
 
@@ -45,7 +44,7 @@ export default function DashboardNavbar({ ...props }: React.ComponentProps<typeo
                     </Breadcrumb>
                 </div>
                 <div className="flex h-full justify-end items-center space-x-1.5">
-                    <Input type="text" placeholder="Search" className="md:w-xs w-fit" />
+                    {/* <Input type="text" placeholder="Search" className="md:w-xs w-fit" /> */}
                     <Separator className=" h-4" />
                     <ModeToggle></ModeToggle>
                 </div>

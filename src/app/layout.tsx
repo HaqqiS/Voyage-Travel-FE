@@ -3,24 +3,23 @@ import { Kreon } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/commons/ThemeProvider"
 import { QueryProvider } from "@/components/commons/QueryProvider"
+import { Toaster } from "@/components/ui/sonner"
 
 const kreon = Kreon({
     variable: "--font-kreon",
     subsets: ["latin"],
 })
 
-
 export const metadata: Metadata = {
     title: "Home | Voyage Travel",
     description: "A travel booking platform",
-}
+}   
 
 export default function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode
 }>) {
-    
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={`${kreon.variable} antialiased`} suppressHydrationWarning>
@@ -32,6 +31,7 @@ export default function RootLayout({
                         disableTransitionOnChange
                     >
                         {children}
+                        <Toaster />
                     </ThemeProvider>
                 </QueryProvider>
             </body>

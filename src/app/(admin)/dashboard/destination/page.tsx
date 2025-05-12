@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { DestinationTable } from "./destination-table"
 
 export const metadata: Metadata = {
     title: "Destination | Voyage Travel",
@@ -7,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function DestinationPage() {
     return (
-        <div>
-            <h1>DestinationPage</h1>
+        <div className="container mx-auto">
+            <DestinationTable />
         </div>
     )
 }

@@ -29,9 +29,7 @@ export default function LoginPage() {
                     {errors.root ? (
                         <p className="font-semibold text-rose-400 ">{errors?.root?.message}</p>
                     ) : (
-                        <span className="relative z-10 bg-background px-2 text-muted-foreground">
-                            Or continue with
-                        </span>
+                        <span className="relative z-10  px-2 text-muted-foreground">Or continue with</span>
                     )}
                 </div>
                 <div>
@@ -51,7 +49,7 @@ export default function LoginPage() {
                                                 placeholder="john@mail.com"
                                                 required
                                                 autoComplete="off"
-                                                className={`${fieldState.error ? 'border-rose-500 focus-visible:ring-rose-500' : ''}`}
+                                                aria-invalid={fieldState.error ? true : false}
                                             />
                                             {fieldState.error && (
                                                 <p className="text-sm font-semibold text-rose-400">
@@ -82,7 +80,7 @@ export default function LoginPage() {
                                                 id="password"
                                                 required
                                                 autoComplete="off"
-                                                className={`${fieldState.error ? 'border-rose-500 focus-visible:ring-rose-500' : ''}`}
+                                                aria-invalid={fieldState.error ? true : false}
                                             />
                                             {fieldState.error && (
                                                 <p className="text-sm font-semibold text-rose-400">
